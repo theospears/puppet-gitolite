@@ -15,7 +15,9 @@
 # Sample Usage:
 #   This method should not be called directly.
 class gitolite::client::package {
-  package { $gitolite::params::gt_client_package:
-    ensure => 'present',
+  if ! defined(Package[$gitolite::params::gt_client_package]) {
+    package { $gitolite::params::gt_client_package:
+        ensure => 'present',
+    }
   }
 }
